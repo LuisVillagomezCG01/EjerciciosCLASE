@@ -11,7 +11,6 @@ Flecha arriba = rota en angulo X positivo
 Flecha abajo = rota en angulo X negativo
 Flecha derecha = rota en angulo Y positivo
 Flecha izquierda= rota en angulo Y negativo
-
 */
 
 #include "Main.h"
@@ -52,15 +51,15 @@ GLfloat SunSpecular[] = { 1.0f, 1.0f, 1.0f, 1.0f };				// Specular Light Values
 GLfloat SunPosition[] = { 0.0f, 0.0f, 0.0f, 1.0f };			// Light Position
 
 GLfloat MercurioDiffuse[] = { 0.976f, 0.572f, 0.101f, 1.0f };			// MERCURIO
-GLfloat MercurioSpecular[] = { 1.0f, 0.5f, 0.0f, 1.0f };
+GLfloat MercurioSpecular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
 GLfloat MercurioShininess[] = { 50.0f };
 
 GLfloat VenDiffuse[] = { 0.992f, 0.913f, 0.568f, 1.0f };			// VENUS
-GLfloat VenSpecular[] = { 1.0f, 0.5f, 0.0f, 1.0f };
+GLfloat VenSpecular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
 GLfloat VenShininess[] = { 50.0f };
 
 GLfloat EarthDiffuse[] = { 0.462f, 0.839f, 0.956f, 1.0f };		// TIERRA
-GLfloat EarthSpecular[] = { 0.8f, 0.8f, 0.8f, 1.0f };
+GLfloat EarthSpecular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
 GLfloat EarthShininess[] = { 50.0f };
 
 GLfloat MoonDiffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f };			// LUNA
@@ -68,23 +67,23 @@ GLfloat MoonSpecular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
 GLfloat MoonShininess[] = { 50.0f };
 
 GLfloat MarDiffuse[] = { 0.898f, 0.560f, 0.431f, 1.0f };			// MARTE
-GLfloat MarSpecular[] = { 1.0f, 0.5f, 0.0f, 1.0f };
+GLfloat MarSpecular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
 GLfloat MarShininess[] = { 50.0f };
 
-GLfloat JupDiffuse[] = { 0.968f, 0.956f, 0.811f, 1.0f };			// JUPITER
-GLfloat JupSpecular[] = { 1.0f, 0.5f, 0.0f, 1.0f };
+GLfloat JupDiffuse[] = { 0.976f, 0.572f, 0.101f, 1.0f };			// JUPITER
+GLfloat JupSpecular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
 GLfloat JupShininess[] = { 50.0f };
 
 GLfloat SatDiffuse[] = { 0.847f, 0.764f, 0.474f, 1.0f };			// SATURNO
-GLfloat SatSpecular[] = { 1.0f, 0.5f, 0.0f, 1.0f };
+GLfloat SatSpecular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
 GLfloat SatShininess[] = { 50.0f };
 
 GLfloat UraDiffuse[] = { 0.764f, 0.913f, 0.925f, 1.0f };			// URANO
-GLfloat UraSpecular[] = { 1.0f, 0.5f, 0.0f, 1.0f };
+GLfloat UraSpecular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
 GLfloat UraShininess[] = { 50.0f };
 
 GLfloat NepDiffuse[] = { 0.764f, 0.913f, 0.925f, 1.0f };			// NEPTUNO
-GLfloat NepSpecular[] = { 1.0f, 0.5f, 0.0f, 1.0f };
+GLfloat NepSpecular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
 GLfloat NepShininess[] = { 50.0f };
 
 void InitGL(GLvoid)     // Inicializamos parametros
@@ -122,7 +121,7 @@ void display(void)   // Creamos la funcion donde se dibuja
 		glColor3f(1.0f, 1.0f, 0.0f);	//Sol amarillo
 		glLightfv(GL_LIGHT1, GL_POSITION, SunPosition);
 		glDisable(GL_LIGHTING);
-		glutSolidSphere(4.0f, 12.0f, 12.0f);  //Dibujando Sun (radio,H,V);
+		glutSolidSphere(4.0f, 60.0f, 60.0f);  //Dibujando Sun (radio,H,V);
 		glEnable(GL_LIGHTING);
 	glPopMatrix();//termina sol
 
@@ -232,8 +231,14 @@ void display(void)   // Creamos la funcion donde se dibuja
 		glRotatef(45, 1.0f, 0.0f, 0.0f); //rotacion de anillo en saturno
 		glColor3f(1.0f, 0.0f, 0.0f);	//color anillo
 		glutSolidTorus(0.5f, 4.0f, 2.0f, 25.0f);  //Dibuja anillo
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, MoonDiffuse);
+		glMaterialfv(GL_FRONT, GL_SPECULAR, MoonSpecular);
+		glMaterialfv(GL_FRONT, GL_SHININESS, MoonShininess);
 		glTranslatef(0.0f, 0.0f, 0.5f); //traslada para dibujar el segundo anillo de saturno
-		glColor3f(1.0f, 1.0f, 1.0f);//color anillo
+		glColor3f(0.0f, 0.0f, 1.0f);//color anillo
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, MoonDiffuse);
+		glMaterialfv(GL_FRONT, GL_SPECULAR, MoonSpecular);
+		glMaterialfv(GL_FRONT, GL_SHININESS, MoonShininess);
 		glutSolidTorus(0.5f, 4.0f, 2.0f, 25.0f);  //Dibuja el segundo anillo
 	glPopMatrix();//termina anillo saturno
 
